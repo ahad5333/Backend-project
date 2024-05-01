@@ -5,9 +5,10 @@ This is series in which we are going to built backend project by using javascrip
 
 ##TodoSchema model 
 The basic thing we have to make three models files that are user and subtodos and todos model with js extension then next we have to install npm install mongoose by using command - npm install mongoose
+
 + todomodels.js
-  ``` javascript
-  import mongoose from 'mongoose';
+``` javascript
+import mongoose from 'mongoose';
 const todoSchema = new mongoose.Schema(
   {
     content: {
