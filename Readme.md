@@ -3,6 +3,91 @@ This is series in which we are going to built backend project by using javascrip
 -[Model link](https://app.eraser.io/workspace/YtPqZ1VogxGy1jzIDkzj)
 
 
+##TodoSchema model 
+The basic thing we have to make three models files that are user and subtodos and todos model with js extension then next we have to install npm install mongoose by using command - npm install mongoose
++ todomodels.js
+  ``` javascript
+  import mongoose from 'mongoose';
+const todoSchema = new mongoose.Schema(
+  {
+    content: {
+      type: String,
+      required: true,
+    },
+    complete: {
+      type: Boolean,
+      default: false,
+    },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+    subTodos: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'SubTodo',
+      },
+    ], //Array of sub todos
+  },
+  { timestamps: true }
+); //created at and updated at
+export const Todo = mongoose.model('Todo', todoSchema);
+```
++subtodo.js
+```javascript
+import mongoose from 'mongoose';
+const subTodoSchema = new mongoose.Schema(
+  {
+    content: {
+      type: String,
+      required: true,
+    },
+    complete: {
+      type: Boolean,
+      default: true,
+    },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  },
+  { timestamps: true }
+);
+export const SubTodo = mongoose.model('SubTodo', subTodoSchema);
+```
++user.models.js
+``` javascript
+import mongoose from "mongoose";
+const userSchema = new mongoose.Schema(
+  {
+    username:{
+      type:String,
+      required: true,
+      unique : true,
+      lowercase: true
+
+    },
+    email:{
+      type:String,
+      requied: true,
+      unique: true,
+      lowercase: true,
+    },
+    
+      password: {
+        type: String,
+        required: true,
+      },
+
+  },{timestamps:true} //created at && updated at
+  );
+
+export const User = mongoose.model("User", userSchema)
+```
+
+
+
+
 ## HTTP CRASH COURSE
 
 HTTP - Hyper text transfer protocol
